@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Flatten and clean up the movies folder.
+find ~/Downloads/movies -mindepth 2 -type f -exec mv -i '{}' ~/Downloads/movies ';'
+rm -rf ~/Downloads/movies/*/
+
+# Flatten and clean up the tv folder.
+find ~/Downloads/tv -mindepth 2 -type f -exec mv -i '{}' ~/Downloads/tv ';'
+rm -rf ~/Downloads/tv/*/
