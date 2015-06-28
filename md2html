@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pandoc -V geometry:margin=1in -o "$(basename "$1" .md).html" $1
