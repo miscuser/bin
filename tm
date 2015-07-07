@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # abort if we're already inside a tmux session
-[ "$TMUX" == "" ] || exit 0
+if ! { [ "$TMUX" == "" ] ;} then 
+    exit 0
+fi
 # startup a "default" session if non currently exists
 # tmux has-session -t _default || tmux new-session -s _default -d
 
