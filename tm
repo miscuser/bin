@@ -5,7 +5,7 @@ if ! { [ "$TMUX" == "" ] ;} then
     exit 0
 fi
 
-# Start a "default" session if none currently exists.
+# Start a default session if none currently exists.
 # tmux has-session -t _default || tmux new-session -s _default -d
 
 # Present menu for user to choose a workspace.
