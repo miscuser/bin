@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# abort if we're already inside a tmux session
+# Abort if we're already inside a tmux session.
 if ! { [ "$TMUX" == "" ] ;} then 
     exit 0
 fi
-# startup a "default" session if non currently exists
+
+# Start a "default" session if none currently exists.
 # tmux has-session -t _default || tmux new-session -s _default -d
 
-# present menu for user to choose which workspace to open
+# Present menu for user to choose a workspace.
 PS3="Choose your session: "
 options=($(tmux list-sessions -F "#S") "new session" "cancel")
 echo "Available sessions"
