@@ -1,0 +1,9 @@
+#!/bin/sh
+
+tmux has-session -t guitar
+if [ $? -ne 0 ]; then
+    tmux new-session -s guitar -d 'vim -O ~/Dropbox/guitar/guitar_practice.txt ~/Dropbox/guitar/guitar_songs.txt'
+fi
+
+tmux attach-session -d -t guitar
+
