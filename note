@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This allows me to keep notes in one location from the command line. 
-# It can be used to log work.
+# I'm using it to log work.
 # Ex: note date          - inserts today's date
 # Ex: note "something"   - inserts the note "something" into the file
 
@@ -23,6 +23,12 @@ fi
 if [  "$1" == "date" ]; then
     printf "\n$dt\n" >> $file 
     echo "--------" >> $file
+elif [  "$1" == "tail" ]; then
+    tail $file 
+elif [  "$1" == "list" ]; then
+    cat $file 
+elif [  "$1" == "" ]; then
+    vim $file 
 else
     printf "$cmd\n" >> $file
 fi
