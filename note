@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This allows me to keep notes in one location from the command line. 
 # I'm using it to log work.
@@ -10,12 +10,12 @@ dt=`date +%m-%d-%y`
 
 if [ "$(uname)" == "Darwin" ]; then
     # file='path to file'
-    echo "Configure this."
-    exit 
+    echo "Configure this.";
+    exit;
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # file='path to file'
-    echo "Configure this."
-    exit
+    echo "Configure this.";
+    exit;
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     file='/cygdrive/c/home/notes/done.txt'
 fi
