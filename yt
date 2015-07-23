@@ -1,0 +1,14 @@
+#!/bin/bash
+# Wrapper for YouTube downloader
+
+src='/home/misc/Dropbox/youtube.txt'
+
+if [  "$1" == "dl" ]; then
+    while read p; do
+       echo "$p" | /home/misc/scripts/youtube_downloader.sh
+    done <$src
+elif [  "$1" == "edit" ]; then
+    vim $src
+else
+    echo "$1" | /home/misc/scripts/youtube_downloader.sh
+fi
