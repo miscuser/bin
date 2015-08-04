@@ -4,7 +4,7 @@
 # I'm using it to log work.
 # Ex: note date          - inserts today's date
 # Ex: note "something"   - inserts the note "something" into the file
-
+ 
 cmd=$1
 dt=`date +%m-%d-%y`
 
