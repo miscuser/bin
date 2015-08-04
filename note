@@ -27,6 +27,8 @@ elif [  "$1" == "tail" ]; then
     tail $file 
 elif [  "$1" == "list" ]; then
     cat $file 
+elif [  "$1" == "star" ]; then
+    note list | grep --color "\*" 
 elif [  "$1" == "" ]; then
     vim $file 
 else
