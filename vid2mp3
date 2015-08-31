@@ -13,7 +13,7 @@ if [[ -d "$PASSED" ]]; then
     xbase=${INPUT##*/}
     xfext=${xbase##*.}
     xpref=${xbase%.*}
-    avconv -i "$INPUT" -threads auto -vn -qscale:a 0 "$OUTDIR/$xpref.mp3"
+    avconv -i "$INPUT" -loglevel panic -threads auto -vn -qscale:a 0 "$OUTDIR/$xpref.mp3"
     done
     rm $VAR                       # Remove text file with filenames
 elif [[ -f $PASSED ]]; then
@@ -21,7 +21,7 @@ elif [[ -f $PASSED ]]; then
     xbase=${PASSED##*/}
     xfext=${xbase##*.}
     xpref=${xbase%.*}
-    avconv -i "$PASSED" -threads auto -vn -qscale:a 0 "$OUTDIR/$xpref.mp3"
+    avconv -i "$PASSED" -loglevel panic -threads auto -vn -qscale:a 0 "$OUTDIR/$xpref.mp3"
 else
     echo ""$PASSED" is not valid"
     exit 1

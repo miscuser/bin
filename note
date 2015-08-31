@@ -4,7 +4,7 @@
 # I'm using it to log work.
 # Ex: note date          - inserts today's date
 # Ex: note "something"   - inserts the note "something" into the file
-
+ 
 cmd=$1
 dt=`date +%m-%d-%y`
 
@@ -13,9 +13,9 @@ if [ "$(uname)" == "Darwin" ]; then
     echo "Configure this.";
     exit;
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    # file='path to file'
-    echo "Configure this.";
-    exit;
+    file='/home/misc/Dropbox/notes/notes.txt'
+    #echo "Configure this.";
+    #exit;
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     file='/cygdrive/c/home/notes/done.txt'
 fi
