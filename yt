@@ -9,7 +9,7 @@ if [ "$1" == "dl" ]; then
        echo "$p" | /home/misc/scripts/youtube_downloader.sh
     done <$src
 # edit the video list
-elif [  "$1" == "edit" ]; then
+elif [ "$1" == "edit" ]; then
     vim $src
 # download the specified video
 else
