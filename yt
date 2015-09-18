@@ -3,12 +3,15 @@
 
 src='/home/misc/Dropbox/youtube.txt'
 
-if [  "$1" == "dl" ]; then
+# download full list of videos
+if [ "$1" == "dl" ]; then
     while read p; do
        echo "$p" | /home/misc/scripts/youtube_downloader.sh
     done <$src
+# edit the video list
 elif [  "$1" == "edit" ]; then
     vim $src
+# download the specified video
 else
     echo "$1" | /home/misc/scripts/youtube_downloader.sh
 fi
