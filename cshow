@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+# Save a few keystrokes since I do this all the time. 
+#    perl -F"\|" -lane 'print $F[col_no];' file 
+#
+# Usage: cshow delimeter column_no file
+#
+# Note: Pipe must be escaped on entry -- "\|"
+#
+# Someday:
+# * add error handling
+
+$delimiter = $ARGV[0];
+$column = $ARGV[1];
+$filename = $ARGV[2];
+
+open(my $fh, $filename)
+  or die "Could not open file: '$filename' $!";
+
+while (my $row = <$fh>) {
+    chomp $row;
+    my @column_data = split($delimiter, $row);
+    print $column_data[$column - 1] . "\n";
+}
