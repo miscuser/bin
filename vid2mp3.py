@@ -5,17 +5,17 @@ import os
 import glob
 
 # https://trac.ffmpeg.org/wiki/Encode/MP3
-# lame option	Average kbit/s	Bitrate range kbit/s	ffmpeg/avconv option
-#       -V 0		245	              220-260				-q:a 0
-#       -V 1		225               190-250				-q:a 1
-#       -V 2		190	              170-210				-q:a 2
-#       -V 3		175	              150-195				-q:a 3
-#       -V 4		165	              140-185				-q:a 4
-#       -V 5		130	              120-150				-q:a 5
-#       -V 6		115	              100-130				-q:a 6
-#       -V 7		100	              80-120				-q:a 7
-#       -V 8		85	              70-105				-q:a 8
-#       -V 9		65	              45-85	    			-q:a 9
+# lame option    Average kbit/s    Bitrate range kbit/s    ffmpeg/avconv option
+#       -V 0        245                  220-260            	-q:a 0
+#       -V 1        225               190-250                -q:a 1
+#       -V 2        190                  170-210            	-q:a 2
+#       -V 3        175                  150-195            	-q:a 3
+#       -V 4        165                  140-185            	-q:a 4
+#       -V 5        130                  120-150            	-q:a 5
+#       -V 6        115                  100-130            	-q:a 6
+#       -V 7        100                  80-120            	-q:a 7
+#       -V 8        85                  70-105            	-q:a 8
+#       -V 9        65                  45-85                	-q:a 9
 
 
 def is_valid_file(arg):
@@ -32,7 +32,7 @@ def is_valid_folder(arg):
         return arg
 
 
-def get_command(infile, outdir, quality = 0):
+def get_command(infile, outdir, quality=0):
     # avconv -i "infile" -loglevel panic -threads auto -vn -qscale:a 0 "$OUTDIR/filename.mp3"
     out_basename = os.path.splitext(os.path.basename(infile))[0]
     cmd = []
@@ -59,32 +59,32 @@ def process_folder(indir):
 
     for media in files_grabbed:
         #  print(get_command(media, args.output_folder, args.quality))
-		os.system(get_command(media, args.output_folder, args.quality))
+        os.system(get_command(media, args.output_folder, args.quality))
 
 
 if __name__ == '__main__':
     #  default_output_folder = '/cygdrive/c/testing/'
-	default_output_folder = os.path.join(os.path.expanduser("~"), "Downloads")
+    default_output_folder = os.path.join(os.path.expanduser("~"), "Downloads")
 
-	parser = argparse.ArgumentParser()
-	parser.add_argument('-o', action='store', dest='output_folder',
-						help='folder to dump output mp3s', nargs='?',
-						default=default_output_folder, type=is_valid_folder)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-o', action='store', dest='output_folder',
+                        help='folder to dump output mp3s', nargs='?',
+                        default=default_output_folder, type=is_valid_folder)
 
-	parser.add_argument('-f', action='store', dest='source_file',
-						help='file to process', nargs='?', type=is_valid_file)
+    parser.add_argument('-f', action='store', dest='source_file',
+                        help='file to process', nargs='?', type=is_valid_file)
 
-	parser.add_argument('-d', action='store', dest='source_folder',
-						help='folder to process', nargs='?', type=is_valid_folder)
+    parser.add_argument('-d', action='store', dest='source_folder',
+                        help='folder to process', nargs='?', type=is_valid_folder)
 
-	parser.add_argument('-q', action='store', dest='quality',
-						help='quality setting [0 (high) - 9 (low)]', nargs='?',
-						default='0', metavar='[0-9]')
+    parser.add_argument('-q', action='store', dest='quality',
+                        help='quality setting [0 (high) - 9 (low)]', nargs='?',
+                        default='0', metavar='[0-9]')
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	if args.source_file:
-		#  print(get_command(args.source_file, args.output_folder, args.quality))
-		os.system(get_command(args.source_file, args.output_folder, args.quality))
-	if args.source_folder:
-		process_folder(args.source_folder)
+    if args.source_file:
+        #  print(get_command(args.source_file, args.output_folder, args.quality))
+        os.system(get_command(args.source_file, args.output_folder, args.quality))
+    if args.source_folder:
+        process_folder(args.source_folder)
