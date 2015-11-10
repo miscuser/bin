@@ -1,4 +1,7 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python
+
+# How many days ago was a particular date?
+# script dd mm yy
 
 from datetime import date
 import sys
@@ -6,16 +9,15 @@ import sys
 now = date.today()
 month = int(sys.argv[1])
 day = int(sys.argv[2])
+year = int(sys.argv[3])
 try:
-  year = int(sys.argv[3])
-  if 50 <= year < 100:    # assume 20th century
-    year += 1900
-  if 0 <= year < 50:      # assume 21st century
-    year += 2000
-except IndexError:        # assume this year
-  year = now.year
+    if 50 <= year < 100:    # assume 20th century
+        year += 1900
+    if 0 <= year < 50:      # assume 21st century
+        year += 2000
+except IndexError:          # assume this year
+    year = now.year
 
 then = date(year, month, day)
 ago = now - then
 print ago.days
-
