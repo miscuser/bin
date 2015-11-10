@@ -26,6 +26,7 @@ def get_command(infile, outdir):
     cmd.append('avconv')
     cmd.append('-i')
     cmd.append('"' + str(infile) + '"')
+    cmd.append('-loglevel')
     cmd.append('panic')
     cmd.append('-threads')
     cmd.append('auto')
@@ -43,12 +44,12 @@ def process_folder(indir):
         files_grabbed.extend(glob.glob(os.path.join(indir, files)))
 
     for media in files_grabbed:
-        print(get_command(media, args.output_folder))
-        #  os.system(get_command(media, args.output_folder))
+        # print(get_command(media, args.output_folder))
+        os.system(get_command(media, args.output_folder))
 
 if __name__ == '__main__':
-    default_output_folder = '/cygdrive/c/testing/'
-    #  default_output_folder = '~/Downloads'
+    # default_output_folder = '/cygdrive/c/testing/'
+    default_output_folder = os.path.join(os.path.expanduser("~"), "Downloads")
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-o', action='store', dest='output_folder', help='folder to dump output mp3s', nargs='?', default=default_output_folder, type=is_valid_folder)
@@ -57,7 +58,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.source_file:
-        print(get_command(args.source_file, args.output_folder))
-        #  os.system(get_command(args.source_file, args.output_folder))
+        # print(get_command(args.source_file, args.output_folder))
+        os.system(get_command(args.source_file, args.output_folder))
     if args.source_folder:
         process_folder(args.source_folder)
