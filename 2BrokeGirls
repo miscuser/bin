@@ -42,7 +42,7 @@ def get_title(filename):
     return s
 
 
-def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_title, trackno):
+def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_title, track_number):
     audiofile = eyed3.load(mp3_file_name)
 
     if audiofile.tag is None:                           # Needed if frame does not exist.
@@ -54,7 +54,7 @@ def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_titl
     audiofile.tag.artist = artist
     audiofile.tag.album = album
     audiofile.tag.title = item_title.decode('utf-8')    # unicode
-    audiofile.tag.track_num = (trackno, "")             # Tuple of (track, total tracks).
+    audiofile.tag.track_num = (track_number, "")             # Tuple of (track, total tracks).
     audiofile.tag.genre = genre
     audiofile.tag.save()
 
@@ -65,9 +65,9 @@ def process_folder(infolder):
 
     for media in files_grabbed:
         print("Processing {}...").format(media)
-        tracknumber = get_episode(media)
+        track_number = get_episode(media)
         item_title = get_title(media)
-        update_id3(media, artwork_file_name, artist, album, genre, item_title, tracknumber)
+        update_id3(media, artwork_file_name, artist, album, genre, item_title, track_number)
 
 
 if __name__ == '__main__':
@@ -87,8 +87,8 @@ if __name__ == '__main__':
 
     if args.source_file:
         print("Processing {}...").format(args.source_file)
-        tracknumber = get_episode(args.source_file)
+        track_number = get_episode(args.source_file)
         item_title = get_title(args.source_file)
-        update_id3(args.source_file, artwork_file_name, artist, album, genre, item_title, tracknumber)
+        update_id3(args.source_file, artwork_file_name, artist, album, genre, item_title, track_number)
     if args.source_folder:
         process_folder(args.source_folder)
