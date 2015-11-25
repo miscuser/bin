@@ -24,7 +24,7 @@ def is_valid_folder(arg):
         return arg
 
 
-def getEpisode(filename):
+def get_episode(filename):
     try:
         episode = re.search('x(.+?)\ ', filename).group(1)
     except AttributeError:
@@ -32,7 +32,7 @@ def getEpisode(filename):
     return episode
 
 
-def getTitle(filename):
+def get_title(filename):
     t = filename.split('-')        # Do this the simple way since I know the naming is correct.
     s = t[2].rstrip('.mp3')        # Strip the extension.
     try:
@@ -65,8 +65,8 @@ def process_folder(infolder):
 
     for media in files_grabbed:
         print("Processing {}...").format(media)
-        tracknumber = getEpisode(media)
-        item_title = getTitle(media)
+        tracknumber = get_episode(media)
+        item_title = get_title(media)
         update_id3(media, artwork_file_name, artist, album, genre, item_title, tracknumber)
 
 
@@ -87,8 +87,8 @@ if __name__ == '__main__':
 
     if args.source_file:
         print("Processing {}...").format(args.source_file)
-        tracknumber = getEpisode(args.source_file)
-        item_title = getTitle(args.source_file)
+        tracknumber = get_episode(args.source_file)
+        item_title = get_title(args.source_file)
         update_id3(args.source_file, artwork_file_name, artist, album, genre, item_title, tracknumber)
     if args.source_folder:
         process_folder(args.source_folder)
