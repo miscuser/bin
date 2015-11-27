@@ -75,7 +75,7 @@ if __name__ == '__main__':
     artist = u"2 Broke Girls"
     album = u"2 Broke Girls - Season 05"
     genre = u"TV"
-    artwork_file_name = "supporting/2BrokeGirls/Season05.png"
+    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/Season05.png"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', action='store', dest='source_file',
