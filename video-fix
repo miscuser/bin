@@ -1,5 +1,6 @@
 #!/bin/bash
-# This is a crappy workaround to the constant resolution problem.
+# This is a crappy workaround to the constant resolution problems.
+# Add this to Startup Applications.
 
 sleep 10
 xrandr --output VGA-0 --mode 1920x1080
