@@ -25,6 +25,9 @@ if [  "$1" == "date" ]; then
     echo "--------" >> $file
 elif [  "$1" == "tail" ]; then
     tail $file 
+elif [  "$1" == "today" ]; then
+    echo ""
+    sed -n "/$dt/,//p" $file
 elif [  "$1" == "list" ] || [  "$1" == "lsit" ]; then
     cat $file 
 elif [  "$1" == "star" ] || [ "$1" == "todo" ] ; then
