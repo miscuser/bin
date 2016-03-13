@@ -1,4 +1,5 @@
  #!/bin/bash  
+
  # Shows current SABnzbd download status.  Can be used with Conky.
  # Requires: xmlstarlet
 
@@ -16,11 +17,12 @@
       timeleft=$(prntvalue "/queue/timeleft")  
       totmbleft=$(prntnumber "/queue/mbleft")  
       totmb=$(prntnumber "/queue/mb")  
-      kbpersec=$(prntnumber "/queue/kbpersec")  
+      speed=$(prntvalue "/queue/speed")  
+      file=$(prntvalue "/queue/jobs/job/filename")  
       if [ $state == "paused" ]; then  
            echo "SABnzbd+ $state. $nojobs items queued."  
       else       
-           echo "SABnzbd+ $state @$kbpersec k/s Downloading $nojobs items ETA:$timeleft"  
+           echo "SABnzbd+ $state \"$file\" @$speed/s - $nojobs item(s) ETA:$timeleft"  
       fi  
  else  
       echo -e "SABnzbd+ is $state"  
