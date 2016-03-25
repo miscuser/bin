@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Creates a folder with the current date yyyy.mm.dd
+
+cmd=$1
+dt=`date +%Y.%m.%d`
+
+mkdir $dt
