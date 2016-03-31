@@ -61,7 +61,7 @@ def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_titl
 
 def process_folder(infolder):
     files_grabbed = []
-    files_grabbed = glob.glob(infolder + "*.mp3")
+    files_grabbed = glob.glob(infolder + "*2*Broke*.mp3")
 
     for media in files_grabbed:
         print("Processing {}...").format(media)
