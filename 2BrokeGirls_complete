@@ -1,3 +1,12 @@
 #!/bin/sh
 
-vid2mp3 -f "$1" && 2BrokeGirls -d /home/misc/Downloads/
+# Wrapper to extract audio, update ID3 info, and move files to correct location."
+
+echo "Extracting audio from video..."
+vid2mp3 -f "$1" 
+
+echo "Updating audio metadata..."
+2BrokeGirls -d /home/misc/Downloads/
+
+echo "\nMoving audio files..."
+mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/\!Audio\ from\ tv\ and\ movies/2\ Broke\ Girls/Season\ 05/
