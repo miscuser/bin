@@ -13,4 +13,8 @@ mkdir -p blah/{testing,dummy}
 # Multiple levels can be created at once.
 mkdir -p projects/{src,doc/{api,system},tools,db}
 
+# Recursively remove all files of a particular type.
+# Use the first option to list the affected files before deleting.
+find . -name "*.tbn" -type f
+find . -name "*.tbn" -type f -delete
 
