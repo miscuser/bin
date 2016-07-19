@@ -1,4 +1,5 @@
 #!/bin/sh
+# Start tmux session for guitar practice.
 
 tmux has-session -t guitar
 if [ $? -ne 0 ]; then
