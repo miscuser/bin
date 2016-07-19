@@ -1,0 +1,4 @@
+#!/bin/bash
+# Download specified filetypes from a webpage.
+
+wget -A "$1" -r -l 1 -nd "$2"
