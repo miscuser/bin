@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# Wrapper to extract audio, update ID3 info, and move files to correct location."
+# Wrapper to extract audio, update ID3 info, and move files to correct location.
 # Processes the most recent file in the current season.
 
 # Season in NN format.
-nn="05"
+nn="06"
 
 echo "Extracting audio from video..."
 cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $nn/
