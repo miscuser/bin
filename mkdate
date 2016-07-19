@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Creates a folder with the current date yyyy.mm.dd
+# Creates a folder with the current date in yyyy.mm.dd format.
 
 cmd=$1
 dt=`date +%Y.%m.%d`
