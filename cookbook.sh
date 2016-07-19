@@ -18,3 +18,10 @@ mkdir -p projects/{src,doc/{api,system},tools,db}
 find . -name "*.tbn" -type f
 find . -name "*.tbn" -type f -delete
 
+# Check for multiple files with a specific naming convention.
+# This can be used in a script that moves/checks for files.
+if ls exportedstudents*.txt 1> /dev/null 2>&1; then
+  echo "TRUE" 
+else
+  echo "FALSE"
+fi
