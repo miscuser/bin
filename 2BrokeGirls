@@ -61,7 +61,7 @@ def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_titl
 
 def process_folder(infolder):
     files_grabbed = []
-    files_grabbed = glob.glob(infolder + "*.mp3")
+    files_grabbed = glob.glob(infolder + "*2*Broke*.mp3")
 
     for media in files_grabbed:
         print("Processing {}...").format(media)
@@ -73,9 +73,9 @@ def process_folder(infolder):
 if __name__ == '__main__':
     eyed3.log.setLevel("ERROR")
     artist = u"2 Broke Girls"
-    album = u"2 Broke Girls - Season 05"
+    album = u"2 Broke Girls - Season 06"
     genre = u"TV"
-    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/Season05.png"
+    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', action='store', dest='source_file',

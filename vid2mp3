@@ -53,7 +53,7 @@ def get_command(infile, outdir, quality=0):
 
 def process_folder(indir):
     files_grabbed = []
-    types = ('*.avi', '*.mkv', '*.mp4')
+    types = ('*.avi', '*.mkv', '*.mp4', '*.flac')
     for files in types:
         files_grabbed.extend(glob.glob(os.path.join(indir, files)))
 
