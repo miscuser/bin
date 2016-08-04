@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Find files countaning specified text/pattern.
+# Dependencies: Silver Searcher
+
+# Find files and omit errors (e.g. permission denied)
+if hash ag 2>/dev/null; then
+    ag -li "$*" 2>/dev/null
+else
+    echo "Install Silver Searcher (Ag) first"
+fi
+
