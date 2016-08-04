@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Find a file with a pattern in the name.
+
+# Using -not -iwholename to ignore .git folders. Remove that to restore.
+find . -not -iwholename '*.git*' -type f -iname '*'"$*"'*' -ls 2>/dev/null
