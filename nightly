@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Run nightly backup.
+
+/home/misc/scripts/nightly_backup.sh
