@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Start local webserver using Python to share current directory.
+
+# start local webserver to share files
+echo $(ip):8000
+python -m SimpleHTTPServer
+
