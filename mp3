@@ -16,4 +16,4 @@
 #       -V 9        65                     45-85                -q:a 9
 
 # Change the audio quality using the chart above as a reference.
-youtube-dl --extract-audio --audio-format mp3 --audio-quality 2 $1
+youtube-dl --extract-audio --audio-format mp3 --audio-quality 1 $1
