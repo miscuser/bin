@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Download video and convert to mp3 using youtube-dl.
+
+youtube-dl -x --audio-format mp3 $1
