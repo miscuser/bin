@@ -2,4 +2,4 @@
 
 # Run nightly backup.
 
-/home/misc/scripts/nightly_backup.sh
+/home/misc/scripts/backup-scripts/nightly_backup_linux.sh
