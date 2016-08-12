@@ -3,11 +3,11 @@
 # Wrapper to extract audio, update ID3 info, and move files to correct location.
 # Processes the most recent file in the current season.
 
-# Season in NN format.
-nn="06"
+# Season in season format.
+season="06"
 
 echo "Extracting audio from video..."
-cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $nn/
+cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $season/
 latest="$(ls -t1 | head -n 1)"
 vid2mp3 -f "$latest" 
 
@@ -15,4 +15,4 @@ echo "Updating audio metadata..."
 2BrokeGirls -d /home/misc/Downloads/
 
 echo "\nMoving audio files..."
-mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/\!Audio\ from\ tv\ and\ movies/2\ Broke\ Girls/Season\ $nn/
+mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/\!Audio\ from\ tv\ and\ movies/2\ Broke\ Girls/Season\ $season/
