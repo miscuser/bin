@@ -3,7 +3,7 @@
 # Wrapper to extract audio, update ID3 info, and move files to correct location.
 # Processes the most recent file in the current season.
 
-# Season in season format.
+# Season in nn format.
 season="06"
 
 echo "Extracting audio from video..."
