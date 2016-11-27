@@ -15,5 +15,5 @@ echo "Updating audio metadata..."
 2BrokeGirls -d /home/misc/Downloads/
 
 echo "\nMoving audio files..."
-mkdir -p /home/misc/Music/\!Audio\ from\ tv\ and\ movies/2\ Broke\ Girls/Season\ $season/
-mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/\!Audio\ from\ tv\ and\ movies/2\ Broke\ Girls/Season\ $season/
+# Move to iTunes folder due to rearrangement of muisc library.
+mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/Automatically\ Add\ to\ iTunes/
