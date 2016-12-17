@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Hack to get videos from my Windows machine to the correct locations.
+# Add this to Startup Applications.
+
+# Movies.
+mv /media/misc/OS/dl/MoveToPlex/MoviesCollection/* /media/external/videos/Movies/Collection/ 2>/dev/null
+mv /media/misc/OS/dl/MoveToPlex/MoviesFavorites/* /media/external/videos/Movies/Favorites/ 2>/dev/null
+mv /media/misc/OS/dl/MoveToPlex/MoviesNeverWatched/* /media/external/videos/Movies/Never\ Watched/ 2>/dev/null
