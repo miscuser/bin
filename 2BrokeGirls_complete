@@ -6,9 +6,11 @@
 # Season in nn format.
 season="06"
 
-echo "Extracting audio from video..."
+# echo "Searching for latest file..."
 cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $season/
 latest="$(ls -t1 | head -n 1)"
+echo "Found: $latest"
+echo "Extracting audio from video..."
 vid2mp3 -f "$latest" 
 
 echo "Updating audio metadata..."
