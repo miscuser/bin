@@ -71,11 +71,8 @@ def process_folder(infolder):
 
 
 if __name__ == '__main__':
-    eyed3.log.setLevel("ERROR")
-    artist = u"2 Broke Girls"
-    album = u"2 Broke Girls - Season 06"
-    genre = u"TV"
-    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
+
+    current_season = "06"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', action='store', dest='source_file',
@@ -83,7 +80,18 @@ if __name__ == '__main__':
 
     parser.add_argument('-d', action='store', dest='source_folder',
                         help='folder to process', nargs='?', type=is_valid_folder)
+
+    parser.add_argument('-s', action='store', dest='season',
+                        help='season number in NN format', nargs='?',
+                        default=current_season)
+
     args = parser.parse_args()
+
+    eyed3.log.setLevel("ERROR")
+    artist = u"2 Broke Girls"
+    album = u"2 Broke Girls - Season " + args.season.encode('utf-8')
+    genre = u"TV"
+    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
 
     if args.source_file:
         print("Processing {}...").format(args.source_file)
