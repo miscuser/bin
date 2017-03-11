@@ -11,7 +11,7 @@ cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $season/
 latest="$(ls -t1 | head -n 1)"
 echo "Found: $latest"
 echo "Extracting audio from video..."
-vid2mp3 -f "$latest" 
+vid2mp3 -f "$latest" -q 9 
 
 echo "Updating audio metadata..."
 2BrokeGirls -d /home/misc/Downloads/
