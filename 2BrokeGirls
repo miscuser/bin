@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-# Script to save ID3 data to my 2 Broke Girls mp3s.
-#   The album needs to be updated each season
+# Saves ID3 data for 2 Broke Girls mp3s.
+#   The current season needs to be updated each season
 #   The artwork can also be updated each season
 
 import os
@@ -42,19 +42,19 @@ def get_title(filename):
     return s
 
 
-def update_id3(mp3_file_name, artwork_file_name, artist, album, genre, item_title, track_number):
+def update_id3(mp3_file_name, artwork, artist, album, genre, title, track):
     audiofile = eyed3.load(mp3_file_name)
 
     if audiofile.tag is None:                           # Needed if frame does not exist.
         audiofile.tag = eyed3.id3.Tag()
         audiofile.tag.file_info = eyed3.id3.FileInfo(mp3_file_name)
 
-    imagedata = open(artwork_file_name, 'rb').read()
+    imagedata = open(artwork, 'rb').read()
     audiofile.tag.images.set(3, imagedata, "image/jpeg", u"")  # A description can go in the last part.
     audiofile.tag.artist = artist
     audiofile.tag.album = album
-    audiofile.tag.title = item_title.decode('utf-8')    # unicode
-    audiofile.tag.track_num = (track_number, "")             # Tuple of (track, total tracks).
+    audiofile.tag.title = title.decode('utf-8')
+    audiofile.tag.track_num = (track, "")             # Tuple of (track, total tracks).
     audiofile.tag.genre = genre
     audiofile.tag.save()
 
@@ -65,9 +65,9 @@ def process_folder(infolder):
 
     for media in files_grabbed:
         print("Processing {}...").format(media)
-        track_number = get_episode(media)
-        item_title = get_title(media)
-        update_id3(media, artwork_file_name, artist, album, genre, item_title, track_number)
+        track = get_episode(media)
+        title = get_title(media)
+        update_id3(media, artwork, artist, album, genre, title, track)
 
 
 if __name__ == '__main__':
@@ -91,12 +91,12 @@ if __name__ == '__main__':
     artist = u"2 Broke Girls"
     album = u"2 Broke Girls - Season " + args.season.encode('utf-8')
     genre = u"TV"
-    artwork_file_name = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
+    artwork = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
 
     if args.source_file:
         print("Processing {}...").format(args.source_file)
-        track_number = get_episode(args.source_file)
-        item_title = get_title(args.source_file)
-        update_id3(args.source_file, artwork_file_name, artist, album, genre, item_title, track_number)
+        track = get_episode(args.source_file)
+        title = get_title(args.source_file)
+        update_id3(args.source_file, artwork, artist, album, genre, title, track)
     if args.source_folder:
         process_folder(args.source_folder)
