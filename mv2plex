@@ -4,6 +4,10 @@
 # Add this to Startup Applications.
 
 # Movies.
-mv /media/misc/OS/dl/MoveToPlex/MoviesCollection/* /media/external/videos/Movies/Collection/
-mv /media/misc/OS/dl/MoveToPlex/MoviesFavorites/* /media/external/videos/Movies/Favorites/
-mv /media/misc/OS/dl/MoveToPlex/MoviesNeverWatched/* /media/external/videos/Movies/Never\ Watched/
+# mv /media/misc/OS/dl/MoveToPlex/MoviesCollection/* /media/external/videos/Movies/Collection/
+# mv /media/misc/OS/dl/MoveToPlex/MoviesFavorites/* /media/external/videos/Movies/Favorites/
+# mv /media/misc/OS/dl/MoveToPlex/MoviesNeverWatched/* /media/external/videos/Movies/Never\ Watched/
+
+# rsync -a --no-owner --no-group --remove-source-files /media/misc/OS/dl/MoveToPlex/MoviesCollection/*  /media/external/videos/Movies/Collection/
+# rsync -a --no-owner --no-group --remove-source-files /media/misc/OS/dl/MoveToPlex/Favorites/*  /media/external/videos/Movies/Favorites/
+# rsync -a --no-owner --no-group --remove-source-files /media/misc/OS/dl/MoveToPlex/MoviesNeverWatched/*  /media/external/videos/Movies/Never\ Watched/
