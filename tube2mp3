@@ -1,0 +1,49 @@
+#!/usr/bin/python
+
+import argparse
+import os
+
+# https://trac.ffmpeg.org/wiki/Encode/MP3
+# lame option    Average kbit/s    Bitrate range kbit/s    ffmpeg/avconv option
+#       -V 0        245                  220-260            	-q:a 0
+#       -V 1        225                  190-250                -q:a 1
+#       -V 2        190                  170-210            	-q:a 2
+#       -V 3        175                  150-195            	-q:a 3
+#       -V 4        165                  140-185            	-q:a 4
+#       -V 5        130                  120-150            	-q:a 5
+#       -V 6        115                  100-130            	-q:a 6
+#       -V 7        100                   80-120            	-q:a 7
+#       -V 8        85                    70-105            	-q:a 8
+#       -V 9        65                     45-85              	-q:a 9
+
+
+def get_command(video_path, quality):
+    # youtube-dl --extract-audio --audio-format mp3 --audio-quality $quality $videopath
+
+    cmd = []
+    cmd.append('youtube-dl')
+    cmd.append('--extract-audio')
+    cmd.append('--audio-format')
+    cmd.append('mp3')
+    cmd.append('--audio-quality')
+    cmd.append(quality)
+    cmd.append(video_path)
+    cmd = ' '.join(cmd)
+    return cmd
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-f', action='store', dest='video_path',
+                        help='file to process', nargs='?')
+
+    parser.add_argument('-q', action='store', dest='quality',
+                        help='quality setting [0 (high) - 9 (low)]', nargs='?',
+                        default='0', metavar='[0-9]')
+
+    args = parser.parse_args()
+
+    if args.video_path:
+        print(get_command(args.video_path, args.quality))
+        os.system(get_command(args.video_path, args.quality))
