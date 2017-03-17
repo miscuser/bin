@@ -1,6 +1,8 @@
 #!/bin/bash
 # Writes a list of my movies and TV shows.
 
-tree /media/external/videos/Movies/ > /home/misc/Dropbox/movies.txt
-tree /media/external/videos/TV\ Shows/ > /home/misc/Dropbox/tv_shows.txt
-tree /home/misc/Dropbox/books/ > /home/misc/Dropbox/books.txt
+dst='/home/misc/Dropbox/logs'
+
+tree /media/external/videos/Movies/ > $dst/movies.txt
+tree /media/external/videos/TV\ Shows/ > $dst/tv_shows.txt
+tree /home/misc/Dropbox/books/ > $dst/books.txt
