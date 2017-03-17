@@ -1,17 +1,15 @@
 #!/bin/bash
-# Wrapper for YouTube downloader
+# Wrapper for youtube-dl.
+# It handles 2 scenarios:
+#   1) Download a list of videos.
+#   2) Edit the list videos.
 
 src='/home/misc/Dropbox/youtube.txt'
 
-# download full list of videos
+# Download from existing list. 
 if [ "$1" == "dl" ]; then
-    while read p; do
-       echo "$p" | /home/misc/scripts/youtube_downloader.sh
-    done <$src
-# edit the video list
-elif [ "$1" == "edit" ]; then
+    youtube-dl --batch-file=$src
+# Edit the list if nothing is specified.
+elif [ "$1" == "" ]; then
     vim $src
-# download the specified video
-else
-    echo "$1" | /home/misc/scripts/youtube_downloader.sh
 fi
