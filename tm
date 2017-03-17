@@ -10,7 +10,7 @@ fi
 
 # Present menu for user to choose a workspace.
 PS3="Choose your session: "
-options=($(tmux list-sessions -F "#S") "new session" "cancel")
+options=($(tmux list-sessions -F 2> /dev/null "#S") "new session" "cancel")
 echo "Available sessions"
 echo "------------------"
 echo " "
