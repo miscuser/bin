@@ -1,6 +1,0 @@
-#!/bin/bash
-# Download specified filetypes from a webpage.
-# usage: getit <filetype> <website>
-# example: getit pdf http://site.with.pdfs.com/
-
-wget -A "$1" -r -l 1 -nd "$2"
