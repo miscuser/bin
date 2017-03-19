@@ -3,10 +3,8 @@
 # Hack to get videos from my Windows machine to the correct locations.
 # Add this to Startup Applications.
 
-src="/media/misc/OS/dl/MoveToPlex"
+src="/home/misc/windows/dl/MoveToPlex/"
 dst="/media/external/videos/Movies"
+cmd='rsync --ignore-missing-args -a --no-owner --no-group --remove-source-files'
 
-ls $src
-rsync -a --no-owner --no-group --remove-source-files $src/Collection/*  $dst/Collection/
-rsync -a --no-owner --no-group --remove-source-files $src/Favorites/*  $dst/Favorites/
-rsync -a --no-owner --no-group --remove-source-files $src/Never\ Watched/*  $dst/Never\ Watched/
+$cmd $src $dst
