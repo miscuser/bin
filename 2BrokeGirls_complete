@@ -5,17 +5,29 @@
 
 # Season in nn format.
 season="06"
+log='/home/misc/Dropbox/logs/2 Broke Girls/2 Broke Girls.txt'
 
-# echo "Searching for latest file..."
+echo "Searching for latest file..."
 cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $season/
 latest="$(ls -t1 | head -n 1)"
 echo "Found: $latest"
-echo "Extracting audio from video..."
-vid2mp3 -f "$latest" -q 9 
 
-echo "Updating audio metadata..."
-2BrokeGirls -d /home/misc/Downloads/
+echo -n "Checking historical file..."
+if grep -q "$latest" "$log"; then
+	echo " already processed."
+else
+    echo " does not exist."
+	echo "$latest" >> "$log"
 
-echo "\nMoving audio files..."
-# Move to iTunes folder due to rearrangement of muisc library.
-mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/Automatically\ Add\ to\ iTunes/
+	echo "Extracting audio from video..."
+	vid2mp3 -f "$latest" -q 9 
+
+	echo "Updating audio metadata..."
+	2BrokeGirls -d /home/misc/Downloads/
+
+	echo "\nMoving audio files..."
+	# Move to iTunes folder due to rearrangement of muisc library.
+	mv -v /home/misc/Downloads/2*Broke*mp3 /home/misc/Music/Automatically\ Add\ to\ iTunes/
+fi
+
+
