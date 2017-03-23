@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Run nightly backup.
+# Move movies to the correct locations.
+/home/misc/bin/mv2plex
 
+# Run backup script.
 /home/misc/scripts/backup-scripts/nightly_backup_linux.sh
 
+# Extract current episode to mp3.
 /home/misc/bin/2BrokeGirls_complete
