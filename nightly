@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Move movies to the correct locations.
-/home/misc/bin/mv2plex
-
-# Run backup script.
-/home/misc/scripts/backup-scripts/nightly_backup_linux.sh
-
-# Extract current episode to mp3.
-/home/misc/bin/2BrokeGirls_complete
+if [ "$(uname)" == "Darwin" ]; then
+    echo "configure this"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	$HOME/bin/mv2plex
+	$HOME/scripts/backup-scripts/nightly_backup_linux.sh
+	$HOME/bin/2BrokeGirls_complete
+elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+	$HOME/scripts/backup-scripts/nightly_backup_windows.sh
+fi
