@@ -12,7 +12,7 @@ find "%NewestFile%" "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt" && (
     echo %NewestFile% was already processed...
     pause
 ) || (
-    echo %NewestFile% was NOT found.
+    echo %NewestFile% was not found.
     
     echo Logging latest file...
     echo %NewestFile% >> "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt"
