@@ -94,6 +94,7 @@ if __name__ == '__main__':
     genre = u"TV"
     artwork = "2BrokeGirls.png"
 
+    print(args)
     if args.source_file:
         print("Processing {}...").format(args.source_file)
         track = get_episode(args.source_file)
