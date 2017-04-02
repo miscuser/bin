@@ -21,7 +21,7 @@ find "%NewestFile%" "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt" && (
     copy "J:\videos\TV Shows\2 Broke Girls\Season 06\%NewestFile%" c:\dl
     
     echo Extracting audio from video...
-    C:\cygwin64\home\main\bin\win\2BG\vid2mp3.bat
+    for %%a in ("c:\dl\2*Broke*.mkv") do avconv -i "%%a" -loglevel panic -threads auto -vn -qscale:a 9 "c:\dl\%%~na.mp3"
     
     echo Updating audio metadata...
     2BrokeGirls.py -d c:\dl\
