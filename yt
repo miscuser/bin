@@ -4,7 +4,15 @@
 #   1) Download a list of videos.
 #   2) Edit the list videos.
 
-src='/home/misc/Dropbox/youtube.txt'
+
+if [ "$(uname)" == "Darwin" ]; then
+    echo "configure this"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    src='~/Dropbox/youtube.txt'
+elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
+    src='c:\Dropbox\youtube.txt'
+fi
+
 
 # Download from existing list. 
 if [ "$1" == "dl" ]; then
