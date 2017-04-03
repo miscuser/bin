@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#  Find a directory with pattern in name. 
+#  Find a directory with pattern in name.
 
 # Find directories and omit errors (e.g. permission denied)
 # Using -not -iwholename to ignore .git folders. Remove that to restore.
