@@ -1,7 +1,8 @@
 #!c:\Python27\python.exe
-##/usr/bin/python
+##/usr/bin/env python
 
 # Saves ID3 data for 2 Broke Girls mp3s.
+#   Relies on eyed3 (pip install eyed3)
 #   The current season needs to be updated each season
 #   The artwork can also be updated each season
 
