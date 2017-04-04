@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!c:\Python27\python.exe
+##/usr/bin/python
 
 # Saves ID3 data for 2 Broke Girls mp3s.
 #   The current season needs to be updated each season
@@ -91,7 +92,7 @@ if __name__ == '__main__':
     artist = u"2 Broke Girls"
     album = u"2 Broke Girls - Season " + args.season.encode('utf-8')
     genre = u"TV"
-    artwork = "/home/misc/bin/supporting/2BrokeGirls/2BrokeGirls.png"
+    artwork = "supporting\\2BrokeGirls\\2BrokeGirls.png"
 
     if args.source_file:
         print("Processing {}...").format(args.source_file)
