@@ -1,23 +1,27 @@
 #!/bin/bash
 # Wrapper for youtube-dl.
-# It handles 2 scenarios:
-#   1) Download a list of videos.
-#   2) Edit the list videos.
+# yt <URL>: download URL/playlist
+# yt edit: edit file
+# yt: download from saved download playlist
 
+download_playlist='https://www.youtube.com/playlist?list=PL1wufWAX7DrLfSXMxM8t_RhWdLSpM3oq1'
 
+# Configuration options/
 if [ "$(uname)" == "Darwin" ]; then
     echo "configure this"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    src='~/Dropbox/youtube.txt'
+    src='~/Dropbox/youtube/youtube.txt'
+    archive='~/Dropbox/youtube/youtube-archive.txt'
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    src='c:\Dropbox\youtube.txt'
+    src='c:\Dropbox\youtube\youtube.txt'
+    archive='c:\Dropbox\youtube\youtube-archive.txt'
 fi
 
-
-# Download from existing list. 
-if [ "$1" == "dl" ]; then
+# Uses.
+if [ "$1" == "file" ]; then
     youtube-dl --batch-file=$src
-# Edit the list if nothing is specified.
-elif [ "$1" == "" ]; then
+elif [ "$1" == "edit" ]; then
     vim $src
+elif [ "$1" == "" ]; then
+    youtube-dl --download-archive $archive $download_playlist
 fi
