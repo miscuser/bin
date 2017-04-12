@@ -1,7 +1,5 @@
 #!/bin/bash
 # Wrapper for youtube-dl that directly creates mp3s.
-# yt <URL>: download URL/playlist
-# yt edit: edit file
 
 cmd='youtube-dl --extract-audio --audio-format mp3 --audio-quality 2'
 

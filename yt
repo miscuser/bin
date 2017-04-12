@@ -1,8 +1,5 @@
 #!/bin/bash
 # Wrapper for youtube-dl.
-# yt <URL>: download URL/playlist
-# yt edit: edit file
-# yt: download from saved download playlist
 
 download_playlist='https://www.youtube.com/playlist?list=PL1wufWAX7DrLfSXMxM8t_RhWdLSpM3oq1'
 
