@@ -19,9 +19,9 @@ fi
 
 # Uses.
 if [ "$1" == "file" ]; then
-    youtube-dl --batch-file=$src
-elif [ "$1" == "edit" ]; then
-    vim $src
+    youtube-dl --batch-file=$src --download-archive $archive
 elif [ "$1" == "" ]; then
+    vim $src
+elif [ "$1" == "dl" ]; then
     youtube-dl --download-archive $archive $download_playlist
 fi
