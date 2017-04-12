@@ -16,7 +16,7 @@ fi
 
 if [ "$1" == "list" ]; then
     youtube-dl --batch-file=$src --download-archive $archive
-elif [ "$1" == "" ]; then
+elif [ "$1" == "edit" ]; then
     vim $src
 elif [ "$1" == "dl" ]; then
     youtube-dl --download-archive $archive $download_playlist
