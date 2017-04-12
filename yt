@@ -14,8 +14,7 @@ elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     archive='c:\Dropbox\youtube\youtube-archive.txt'
 fi
 
-# Uses.
-if [ "$1" == "file" ]; then
+if [ "$1" == "list" ]; then
     youtube-dl --batch-file=$src --download-archive $archive
 elif [ "$1" == "" ]; then
     vim $src
