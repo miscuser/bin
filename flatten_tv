@@ -7,7 +7,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 # Flatten and clean up the TV folder.
-    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mkv' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
-    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mp4' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mkv' -exec mv -iv '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mp4' -exec mv -iv '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
     find /cygdrive/c/dl/torrent/ -type d -not -name torrent -not -name tv\ -\ complete -exec rm -R {} \;
 fi
