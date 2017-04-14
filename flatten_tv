@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Flatten and clean up the movies folder.
-find ~/Downloads/movies -mindepth 2 -type f -exec mv -i '{}' ~/Downloads/movies ';'
-rm -rf ~/Downloads/movies/*/
+shopt -s extglob
 
-# Flatten and clean up the tv folder.
-find ~/Downloads/tv -mindepth 2 -type f -exec mv -i '{}' ~/Downloads/tv ';'
-rm -rf ~/Downloads/tv/*/
+# Flatten and clean up the TV folder.
+find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mkv' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mp4' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+find /cygdrive/c/dl/torrent/ -type d -not -name torrent -not -name tv\ -\ complete -exec rm -R {} \;
