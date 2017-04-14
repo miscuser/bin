@@ -2,7 +2,12 @@
 
 shopt -s extglob
 
+read -p "Are you sure you want to remove files? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 # Flatten and clean up the TV folder.
-find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mkv' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
-find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mp4' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
-find /cygdrive/c/dl/torrent/ -type d -not -name torrent -not -name tv\ -\ complete -exec rm -R {} \;
+    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mkv' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+    find /cygdrive/c/dl/torrent -mindepth 2 -type f -name '*.mp4' -exec mv -i '{}' /cygdrive/c/dl/torrent/tv\ -\ complete ';'
+    find /cygdrive/c/dl/torrent/ -type d -not -name torrent -not -name tv\ -\ complete -exec rm -R {} \;
+fi
