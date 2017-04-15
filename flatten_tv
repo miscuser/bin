@@ -11,6 +11,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     mv $src/*.mkv "$dst" 
+    mv $src/*.mp4 "$dst" 
     find $src -mindepth 2 -type f -name '*.mkv' -exec mv -iv '{}' "$dst" ';'
     find $src -mindepth 2 -type f -name '*.mp4' -exec mv -iv '{}' "$dst" ';'
     find $src -type d -not -name torrent -not -name "$fld" -exec rm -R {} \;
