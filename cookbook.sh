@@ -2,10 +2,10 @@
 
 ### Rename files using wildcard and regular expressions.
 # Replace Season with blanks.
-for f in *.mp4; do mv "$f" "`echo $f | sed s/Season\ //`"; done
+for f in *.mp4; do mv -i "$f" "`echo $f | sed s/Season\ //`"; done
 
 # Replace Episode with x0.
-for f in *.mp4; do mv "$f" "`echo $f | sed s/\ Episode\ /x0/`"; done
+for f in *.mp4; do mv -i "$f" "`echo $f | sed s/\ Episode\ /x0/`"; done
 
 # Create multiple directories at once.
 # This will create blah\testing and blah\dummy -- do not put a space after the commas 
