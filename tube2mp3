@@ -14,21 +14,23 @@
 #       -V 8        85                    70-105                -q:a 8
 #       -V 9        65                     45-85                -q:a 9
 
-cmd='youtube-dl --extract-audio --audio-format mp3 --audio-quality 2'
+cmd='youtube-dl --extract-audio --audio-format mp3 --audio-quality 2 --download-archive '
 
 # Configuration options.
 if [ "$(uname)" == "Darwin" ]; then
     echo "configure this"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     src='~/Dropbox/youtube/youtube.txt'
+    archive='~/Dropbox/youtube/youtube-archive-audio.txt'
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    src='c:\Dropbox\youtube\youtube.txt'
+    src='c:\Dropbox\youtube\youtube-audio.txt'
+    archive='c:\Dropbox\youtube\youtube-archive-audio.txt'
 fi
 
 if [ "$1" == "list" ]; then
-    $cmd --batch-file=$src
+    $cmd $archive --batch-file=$src
 elif [ "$1" == "edit" ]; then
     vim $src
 else
-    $cmd "$1"
+    $cmd $archive "$1"
 fi
