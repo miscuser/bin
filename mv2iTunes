@@ -7,7 +7,7 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo "configure this"
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    dst='/cygdrive/j/Music/Automatically Add to iTunes/'
+    dst='/cygdrive/j/music/Automatically Add to iTunes/'
     dl='/cygdrive/c/dl'
 fi
 

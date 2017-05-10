@@ -27,7 +27,7 @@ find "%NewestFile%" "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt" && (
     c:\python27\python.exe C:\cygwin64\home\main\bin\2BrokeGirls -d c:\\dl\\
 
    	echo Moving audio files to iTunes folder...
-    move c:\dl\2*Broke*mp3 "J:\Music\Automatically Add to iTunes\"
+    move c:\dl\2*Broke*mp3 "J:\music\Automatically Add to iTunes\"
 
    	echo Cleaning temp folder...
     del c:\dl\2*Broke*.*
