@@ -3,16 +3,16 @@
 shopt -s extglob
 
 src='/cygdrive/c/dl/torrent'
-dst='/cygdrive/c/dl/torrent/tv - complete'
+dst='/cygdrive/c/dl/torrent/complete'
 fld='tv - complete'
 
 read -p "Are you sure you want to remove files? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    mv $src/*.mkv "$dst" 
-    mv $src/*.mp4 "$dst" 
-    find $src -mindepth 2 -type f -name '*.mkv' -exec mv -iv '{}' "$dst" ';'
-    find $src -mindepth 2 -type f -name '*.mp4' -exec mv -iv '{}' "$dst" ';'
-    find $src -type d -not -name torrent -not -name "$fld" -exec rm -R {} \;
+    # mv $src/*.mkv "$dst" 
+    # mv $src/*.mp4 "$dst" 
+    # find $src -mindepth 2 -type f -name '*.mkv' -exec mv -iv '{}' "$dst" ';'
+    # find $src -mindepth 2 -type f -name '*.mp4' -exec mv -iv '{}' "$dst" ';'
+    # find $src -type d -not -name torrent -not -name "$fld" -exec rm -R {} \;
 fi
