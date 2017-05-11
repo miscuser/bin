@@ -10,6 +10,7 @@ read -p "Are you sure you want to remove files? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+    echo Configure me. 
     # mv $src/*.mkv "$dst" 
     # mv $src/*.mp4 "$dst" 
     # find $src -mindepth 2 -type f -name '*.mkv' -exec mv -iv '{}' "$dst" ';'
