@@ -56,7 +56,7 @@ def update_id3(mp3_file_name, artwork, artist, album, genre, title, track):
         audiofile.tag = eyed3.id3.Tag()
         audiofile.tag.file_info = eyed3.id3.FileInfo(mp3_file_name)
 
-    if artwork <> '':
+    if artwork:
         imagedata = open(artwork, 'rb').read()
         audiofile.tag.images.set(3, imagedata, "image/jpeg", u"")  # A description can go in the last part.
     audiofile.tag.artist = artist
@@ -80,8 +80,6 @@ def process_folder(infolder, globber):
 
 if __name__ == '__main__':
 
-    current_season = "06"
-
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', action='store', dest='source_file',
                         help='file to process', nargs='?', type=is_valid_file)
@@ -89,17 +87,12 @@ if __name__ == '__main__':
     parser.add_argument('-d', action='store', dest='source_folder',
                         help='folder to process', nargs='?', type=is_valid_folder)
 
-    parser.add_argument('-s', action='store', dest='season',
-                        help='season number in NN format', nargs='?',
-                        default=current_season)
-
-    parser.add_argument('-c', action='store', dest='config_file',
-                        help='configuration file', nargs='?', type=is_valid_file)
+    parser.add_argument('-c', action='store', dest='config_file')
 
     args = parser.parse_args()
 
     config = ConfigParser.ConfigParser()
-    config.read(args.config_file)
+    config.read(os.path.join(os.path.dirname(__file__), "supporting\\inis\\" + args.config_file))  # Relative to script.
 
     eyed3.log.setLevel("ERROR")
 
