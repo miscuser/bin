@@ -20,11 +20,11 @@ cmd='youtube-dl --extract-audio --audio-format mp3 --audio-quality 2 --download-
 if [ "$(uname)" == "Darwin" ]; then
     echo "configure this"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    src='~/Dropbox/youtube/youtube-source-audio.txt'
-    archive='~/Dropbox/youtube/youtube-archive-audio.txt'
+    src='~/Dropbox/logs/youtube/youtube-source-audio.txt'
+    archive='~/Dropbox/logs/youtube/youtube-archive-audio.txt'
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    src='c:\Dropbox\youtube\youtube-source-audio.txt'
-    archive='c:\Dropbox\youtube\youtube-archive-audio.txt'
+    src='c:\Dropbox\logs\youtube\youtube-source-audio.txt'
+    archive='c:\Dropbox\logs\youtube\youtube-archive-audio.txt'
 fi
 
 if [ "$1" == "list" ]; then
