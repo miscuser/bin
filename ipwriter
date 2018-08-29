@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+ip >> /cygdrive/c/Dropbox/logs/ip/ip.txt
