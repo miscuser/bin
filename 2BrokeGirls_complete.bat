@@ -8,14 +8,14 @@ echo Found: %NewestFile%
 echo Checking historical file...
 
 @echo off
-find "%NewestFile%" "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt" && (
+find "%NewestFile%" "C:\Users\main\Google Drive\logs\2 Broke Girls\2 Broke Girls.txt" && (
     echo %NewestFile% was already processed...
     pause
 ) || (
     echo %NewestFile% was not found.
     
     echo Logging latest file...
-    echo %NewestFile% >> "C:\Dropbox\logs\2 Broke Girls\2 Broke Girls.txt"
+    echo %NewestFile% >> "C:\Users\main\Google Drive\logs\2 Broke Girls\2 Broke Girls.txt"
     
     echo Copying file...
     copy "J:\videos\TV Shows\2 Broke Girls\Season 06\%NewestFile%" c:\dl
