@@ -7,11 +7,11 @@ download_playlist='https://www.youtube.com/playlist?list=PL1wufWAX7DrLfSXMxM8t_R
 if [ "$(uname)" == "Darwin" ]; then
     echo "configure this"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    src='~/Dropbox/logs/youtube/youtube-source-video.txt'
+    src='/cygdrive/c/Users/main/Google Drive/logs/youtube/youtube-source-video.txt'
     archive='~/Dropbox/logs/youtube/youtube-archive-video.txt'
 elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    src='c:\Dropbox\logs\youtube\youtube-source-video.txt'
-    archive='c:\Dropbox\logs\youtube\youtube-archive-video.txt'
+    src='C:\Users\main\Google Drive\logs\youtube\youtube-source-video.txt'
+    archive='C:\Users\main\Google Drive\logs\logs\youtube\youtube-archive-video.txt'
 fi
 
 if [ "$1" == "list" ]; then

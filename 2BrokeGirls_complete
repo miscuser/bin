@@ -5,7 +5,7 @@
 
 # Season in nn format.
 season="06"
-log='/home/misc/Dropbox/logs/2 Broke Girls/2 Broke Girls.txt'
+log='/cygdrive/c/Users/main/Google Drive/logs/2 Broke Girls/2 Broke Girls.txt'
 
 echo "Searching for latest file..."
 cd /home/misc/Videos/TV\ Shows/2\ Broke\ Girls/Season\ $season/
