@@ -1,0 +1,15 @@
+#!/bin/bash
+# Opens various Spanish websites with the word/phrase passed in.
+
+q=$1
+
+open -a "Google Chrome" "https://www.google.com.mx/#q="$q; 
+open -a "Google Chrome" "https://www.google.com.mx/search?site=&tbm=isch&q="$q; 
+open -a "Google Chrome" "https://news.google.com/news/section?cf=all&hl=es&ned=es_mx&q="$q"&topicsid=es_mx"; 
+open -a "Google Chrome" "http://forvo.com/search/"$q"/es/"; 
+open -a "Google Chrome" "http://www.123teachme.com/translated_sentences/sp/"$q; 
+open -a "Google Chrome" "http://www.wordreference.com/es/en/translation.asp?spen="$q; 
+open -a "Google Chrome" "http://conjugador.reverso.net/conjugacion-espanol-verbo-"$q".html"; 
+open -a "Google Chrome" "http://www.spanishdict.com/examples/"$q; 
+open -a "Google Chrome" "http://www.spanishdict.com/translate/"$q; 
+open -a "Google Chrome" "http://www.spanishdict.com/conjugate/"$q; 
