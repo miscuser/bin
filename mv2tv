@@ -1,9 +1,0 @@
-#!/bin/bash
-
-src="/cygdrive/c/dl/torrent/complete"
-dst="/cygdrive/c/SickRage/unsortedtv"
-
-# find $src/ -type f | grep -i mkv$ | xargs -i cp {} $dst
-
-shopt -s globstar
-mv $src/**/*.mkv $dst
