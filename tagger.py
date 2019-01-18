@@ -24,12 +24,13 @@ def is_valid_folder(arg):
     else:
         return arg
 
-def process_folder(infolder, globber):
+
+def process_folder(infolder, files_matching):
     files_grabbed = []
-    files_grabbed = glob.glob(infolder + "\\" + globber)
+    files_grabbed = glob.glob(infolder + "\\" + files_matching)
 
     for media in files_grabbed:
-        print("Processing {}...").format(media)
+        print("Processing {}...".format(media))
         #track = get_episode_number(media)
         #title = get_title(media)
         #update_id3(media, artwork, artist, album, genre, title, track)
