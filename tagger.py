@@ -24,6 +24,16 @@ def is_valid_folder(arg):
     else:
         return arg
 
+def process_folder(infolder, globber):
+    files_grabbed = []
+    files_grabbed = glob.glob(infolder + "\\" + globber)
+
+    for media in files_grabbed:
+        print("Processing {}...").format(media)
+        #track = get_episode_number(media)
+        #title = get_title(media)
+        #update_id3(media, artwork, artist, album, genre, title, track)
+
 
 if __name__ == '__main__':
 
@@ -41,18 +51,27 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     config = configparser.ConfigParser()
-    config.read(args.config_file)  # Relative to script.
+    config.read(args.config_file)
 
-    artist  = config.get('MAIN', 'artist')
-    album   = config.get('MAIN', 'album')
-    genre   = config.get('MAIN', 'genre')
+    artist = config.get('MAIN', 'artist')
+    album = config.get('MAIN', 'album')
+    genre = config.get('MAIN', 'genre')
     artwork = config.get('MAIN', 'artwork')
-
+    filespec = config.get('MAIN', 'filespec')
 
     print(artist)
     print(album)
     print(genre)
     print(artwork)
+    print(filespec)
+
+    if args.source_file:
+        print("Processing {}...".format(args.source_file))
+        #track = get_episode_number(args.source_file)
+        #title = get_title(args.source_file)
+        #update_id3(args.source_file, artwork, artist, album, genre, title, track)
+    if args.source_folder:
+        process_folder(args.source_folder, filespec)
 
     # for filename in glob('/Users/ser/Downloads/*.mp3'):
     #     mp3info = EasyID3(filename)
