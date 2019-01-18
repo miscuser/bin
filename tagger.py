@@ -1,4 +1,8 @@
-#!/anaconda3/bin/python
+#!/usr/bin/env python
+
+# Updates ID3 tags for audio files based on settings in a configuration file.
+# This allows me to point it to a directory of TV shows and have all of the metadata updated.
+# It's based on my original script for 2 Broke Girls.
 
 from glob import glob
 from mutagen.easyid3 import EasyID3
