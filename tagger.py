@@ -54,7 +54,7 @@ if __name__ == '__main__':
     print(genre)
     print(artwork)
 
-    # for filename in glob('/Users/fred/Downloads/*.mp3'):
+    # for filename in glob('/Users/ser/Downloads/*.mp3'):
     #     mp3info = EasyID3(filename)
     #     print(mp3info.items())
     #
