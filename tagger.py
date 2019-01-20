@@ -9,6 +9,7 @@ from mutagen.easyid3 import EasyID3
 import argparse
 import configparser
 import os
+import sys
 
 
 def is_valid_file(arg):
@@ -35,24 +36,15 @@ def process_folder(infolder, files_matching):
         #title = get_title(media)
         #update_id3(media, artwork, artist, album, genre, title, track)
 
-
-if __name__ == '__main__':
-
+def parse_args(argv):
     parser = argparse.ArgumentParser()
+    parser.add_argument('src')
+    parser.add_argument('reference')
+    return parser.parse_args(argv[1:])
 
-    parser.add_argument('-f', action='store', dest='source_file',
-                        help='file to process', nargs='?', type=is_valid_file)
-
-    parser.add_argument('-d', action='store', dest='source_folder',
-                        help='folder to process', nargs='?', type=is_valid_folder)
-
-    parser.add_argument('-c', action='store', dest='config_file',
-                        help='configuration file', nargs='?', type=is_valid_file)
-
-    args = parser.parse_args()
-
+def run(src, config_file):
     config = configparser.ConfigParser()
-    config.read(args.config_file)
+    config.read(config_file)
 
     artist = config.get('MAIN', 'artist')
     album = config.get('MAIN', 'album')
@@ -60,19 +52,42 @@ if __name__ == '__main__':
     artwork = config.get('MAIN', 'artwork')
     filespec = config.get('MAIN', 'filespec')
 
-    print(artist)
-    print(album)
-    print(genre)
-    print(artwork)
-    print(filespec)
+    # print(artist)
+    # print(album)
+    # print(genre)
+    # print(artwork)
+    # print(filespec)
 
-    if args.source_file:
-        print("Processing {}...".format(args.source_file))
-        #track = get_episode_number(args.source_file)
-        #title = get_title(args.source_file)
-        #update_id3(args.source_file, artwork, artist, album, genre, title, track)
-    if args.source_folder:
-        process_folder(args.source_folder, filespec)
+    if os.path.isfile(src):
+        print("file")
+    elif os.path.isdir(src):
+        print("directory")
+
+
+def main(argv):
+    args = parse_args(argv)
+    print('Processing "{}" using "{}" as reference...'.format(args.src, args.reference))
+    run(args.src, args.reference)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
+
+
+# if __name__ == '__main__':
+#
+#     args = parse_args()
+#
+
+#
+#     if args.source_file:
+#         print("Processing {}...".format(args.source_file))
+#         #track = get_episode_number(args.source_file)
+#         #title = get_title(args.source_file)
+#         #update_id3(args.source_file, artwork, artist, album, genre, title, track)
+#     if args.source_folder:
+#         process_folder(args.source_folder, filespec)
 
     # for filename in glob('/Users/ser/Downloads/*.mp3'):
     #     mp3info = EasyID3(filename)
