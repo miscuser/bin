@@ -12,20 +12,6 @@ import os
 import sys
 
 
-def is_valid_file(arg):
-    if not os.path.isfile(arg):
-        parser.error('{} does not exist.'.format(arg))
-    else:
-        return arg
-
-
-def is_valid_folder(arg):
-    if not os.path.isdir(arg):
-        parser.error('{} does not exist.'.format(arg))
-    else:
-        return arg
-
-
 def process_folder(infolder, files_matching):
     files_grabbed = []
     files_grabbed = glob.glob(infolder + "\\" + files_matching)
@@ -39,7 +25,7 @@ def process_folder(infolder, files_matching):
 def parse_args(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('src')
-    parser.add_argument('reference')
+    parser.add_argument('config_file')
     return parser.parse_args(argv[1:])
 
 def run(src, config_file):
@@ -66,8 +52,8 @@ def run(src, config_file):
 
 def main(argv):
     args = parse_args(argv)
-    print('Processing "{}" using "{}" as reference...'.format(args.src, args.reference))
-    run(args.src, args.reference)
+    print('Processing "{}" using "{}" as reference...'.format(args.src, args.config_file))
+    run(args.src, args.config_file)
     return 0
 
 
@@ -75,12 +61,6 @@ if __name__ == '__main__':
     sys.exit(main(sys.argv))
 
 
-# if __name__ == '__main__':
-#
-#     args = parse_args()
-#
-
-#
 #     if args.source_file:
 #         print("Processing {}...".format(args.source_file))
 #         #track = get_episode_number(args.source_file)
