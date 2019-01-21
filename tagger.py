@@ -5,7 +5,9 @@
 # It's based on my original script for 2 Broke Girls.
 
 from glob import glob
+import mutagen
 from mutagen.easyid3 import EasyID3
+from mutagen.id3 import APIC, ID3
 import argparse
 import configparser
 import os
@@ -22,11 +24,50 @@ def process_folder(infolder, files_matching):
         #title = get_title(media)
         #update_id3(media, artwork, artist, album, genre, title, track)
 
+
 def parse_args(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('src')
     parser.add_argument('config_file')
     return parser.parse_args(argv[1:])
+
+
+def add_album_art(audio_file, artwork):
+    image_data = open(artwork, 'rb').read()
+
+    id3 = ID3(audio_file)
+    id3.add(
+        APIC(
+            encoding = 3,
+            mime = 'image/png',
+            type = 3,
+            desc = 'Cover',
+            data = image_data
+        )
+    )
+
+    id3.save(v2_version = 3)
+
+
+def update_id3(mp3_file, artist, album, genre, artwork):
+    try:
+        audio = EasyID3(mp3_file)
+    except:
+        audio = mutagen.File(mp3_file, easy=True)
+        audio.add_tags()
+
+    audio['artist'] = artist
+    audio['album'] = album
+    audio['genre'] = genre
+
+#    audio['title'] = 'title'
+#    audio['albumartist'] = 'artist'
+#    audio['tracknumber'] = 'track_number'
+
+    #add_album_art(mp3_file, artwork)  # This isn't working yet.
+
+    audio.save(v2_version=3)
+
 
 def run(src, config_file):
     config = configparser.ConfigParser()
@@ -38,16 +79,15 @@ def run(src, config_file):
     artwork = config.get('MAIN', 'artwork')
     filespec = config.get('MAIN', 'filespec')
 
-    # print(artist)
-    # print(album)
-    # print(genre)
-    # print(artwork)
-    # print(filespec)
-
     if os.path.isfile(src):
-        print("file")
+        print("Processing {}...".format(src))
+        update_id3(src, artist, album, genre, artwork)
+    #         #track = get_episode_number(args.source_file)
+    #         #title = get_title(args.source_file)
+    #         #update_id3(artwork, title, track)
     elif os.path.isdir(src):
         print("directory")
+        # process_folder(, config_file)
 
 
 def main(argv):
@@ -59,19 +99,3 @@ def main(argv):
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
-
-
-#     if args.source_file:
-#         print("Processing {}...".format(args.source_file))
-#         #track = get_episode_number(args.source_file)
-#         #title = get_title(args.source_file)
-#         #update_id3(args.source_file, artwork, artist, album, genre, title, track)
-#     if args.source_folder:
-#         process_folder(args.source_folder, filespec)
-
-    # for filename in glob('/Users/ser/Downloads/*.mp3'):
-    #     mp3info = EasyID3(filename)
-    #     print(mp3info.items())
-    #
-    # print(EasyID3.valid_keys.keys())
-
