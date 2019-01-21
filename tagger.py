@@ -5,13 +5,14 @@
 # It's based on my original script for 2 Broke Girls.
 
 from glob import glob
-import mutagen
-from mutagen.easyid3 import EasyID3
-from mutagen.id3 import APIC, ID3
+from mutagen.mp3 import MP3
+from mutagen.id3 import ID3, TALB, TPE1, TCON, APIC, TIT2
+from mutagen.id3 import ID3NoHeaderError
 import argparse
 import configparser
 import os
 import sys
+import re
 
 
 def process_folder(infolder, files_matching):
@@ -32,41 +33,42 @@ def parse_args(argv):
     return parser.parse_args(argv[1:])
 
 
-def add_album_art(audio_file, artwork):
-    image_data = open(artwork, 'rb').read()
+def update_tags(fname, artist, album, genre, artwork, title):
+    try:
+        tags = ID3(fname)
+    except ID3NoHeaderError:
+        print("Adding ID3 header")
+        tags = ID3()
 
-    id3 = ID3(audio_file)
-    id3.add(
+    tags["TPE1"] = TPE1(encoding=3, text=artist)
+    tags["TALB"] = TALB(encoding=3, text=album)
+    tags["TCON"] = TCON(encoding=3, text=genre)
+    tags["TIT2"] = TIT2(encoding=3, text=title)
+    #tags["TRCK"] = TRCK(encoding=3, text=u'track_number')
+
+    tags.add(
         APIC(
-            encoding = 3,
-            mime = 'image/png',
-            type = 3,
-            desc = 'Cover',
-            data = image_data
+            encoding=3,        # 3 is for utf-8
+            mime='image/png',  # image/jpeg or image/png
+            type=3,            # 3 is for the cover image
+            desc=u'Cover',
+            data=open(artwork, 'rb').read()
         )
     )
+    tags.save(v2_version=3)
 
-    id3.save(v2_version = 3)
 
-
-def update_id3(mp3_file, artist, album, genre, artwork):
-    try:
-        audio = EasyID3(mp3_file)
-    except:
-        audio = mutagen.File(mp3_file, easy=True)
-        audio.add_tags()
-
-    audio['artist'] = artist
-    audio['album'] = album
-    audio['genre'] = genre
-
-#    audio['title'] = 'title'
-#    audio['albumartist'] = 'artist'
-#    audio['tracknumber'] = 'track_number'
-
-    #add_album_art(mp3_file, artwork)  # This isn't working yet.
-
-    audio.save(v2_version=3)
+def get_title(filename):
+    if "-" in filename:
+        t = filename.split('-')        # Do this the simple way since I know the naming is correct.
+        s = t[2].rstrip('.mp3')        # Strip the extension.
+        try:
+            s = re.search(' (.+)', s).group(1)
+        except AttributeError:
+            pass
+    else:
+        s = input("Enter a track title: ")
+    return s
 
 
 def run(src, config_file):
@@ -81,13 +83,12 @@ def run(src, config_file):
 
     if os.path.isfile(src):
         print("Processing {}...".format(src))
-        update_id3(src, artist, album, genre, artwork)
-    #         #track = get_episode_number(args.source_file)
-    #         #title = get_title(args.source_file)
-    #         #update_id3(artwork, title, track)
+        #track = get_episode_number(args.source_file)
+        title = get_title(src)
+        update_tags(src, artist, album, genre, artwork, title)
     elif os.path.isdir(src):
         print("directory")
-        # process_folder(, config_file)
+        # process_folder(src, config_file, filespec)
 
 
 def main(argv):
