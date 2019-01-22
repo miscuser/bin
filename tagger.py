@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
 # Updates ID3 tags for audio files based on settings in a configuration file.
-# This allows me to point it to a directory of TV shows and have all of the metadata updated.
-# It's based on my original script for 2 Broke Girls.
+# This allows me to point it to a directory of TV shows and have the metadata created.
 
 from glob import glob
-from mutagen.mp3 import MP3
-from mutagen.id3 import ID3, TALB, TPE1, TCON, APIC, TIT2
+import glob
+from mutagen.id3 import ID3, TALB, TPE1, TCON, APIC, TIT2, TRCK
 from mutagen.id3 import ID3NoHeaderError
 import argparse
 import configparser
@@ -15,15 +14,15 @@ import sys
 import re
 
 
-def process_folder(infolder, files_matching):
+def process_folder(folder, artist, album, genre, artwork, files_matching):
     files_grabbed = []
-    files_grabbed = glob.glob(infolder + "\\" + files_matching)
+    files_grabbed = glob.glob(os.path.join(folder, files_matching))
 
     for media in files_grabbed:
-        print("Processing {}...".format(media))
-        #track = get_episode_number(media)
-        #title = get_title(media)
-        #update_id3(media, artwork, artist, album, genre, title, track)
+        print('Updating ID3 tags for "{}"...'.format(media))
+        track = get_episode_number(media)
+        title = get_title(media)
+        update_tags(media, artist, album, genre, artwork, title, track)
 
 
 def parse_args(argv):
@@ -33,24 +32,24 @@ def parse_args(argv):
     return parser.parse_args(argv[1:])
 
 
-def update_tags(fname, artist, album, genre, artwork, title):
+def update_tags(fname, artist, album, genre, artwork, title, track):
     try:
         tags = ID3(fname)
     except ID3NoHeaderError:
-        print("Adding ID3 header")
+        print('Adding ID3 header')
         tags = ID3()
 
     tags["TPE1"] = TPE1(encoding=3, text=artist)
     tags["TALB"] = TALB(encoding=3, text=album)
     tags["TCON"] = TCON(encoding=3, text=genre)
     tags["TIT2"] = TIT2(encoding=3, text=title)
-    #tags["TRCK"] = TRCK(encoding=3, text=u'track_number')
+    tags["TRCK"] = TRCK(encoding=3, text=track)
 
     tags.add(
         APIC(
-            encoding=3,        # 3 is for utf-8
-            mime='image/png',  # image/jpeg or image/png
-            type=3,            # 3 is for the cover image
+            encoding=3,
+            mime='image/png',
+            type=3,
             desc=u'Cover',
             data=open(artwork, 'rb').read()
         )
@@ -60,15 +59,27 @@ def update_tags(fname, artist, album, genre, artwork, title):
 
 def get_title(filename):
     if "-" in filename:
-        t = filename.split('-')        # Do this the simple way since I know the naming is correct.
-        s = t[2].rstrip('.mp3')        # Strip the extension.
+        t = filename.split('-')
+        s = t[2].rstrip('.mp3')
         try:
             s = re.search(' (.+)', s).group(1)
         except AttributeError:
-            pass
+            s = ''
     else:
-        s = input("Enter a track title: ")
+        s = input('Enter a track title: ')
     return s
+
+
+def get_episode_number(filename):
+    match = re.search(r'x[0-9]', filename)
+    if match:
+        try:
+            episode = re.search('x(.+?)\ ', filename).group(1)
+        except AttributeError:
+            episode = ''
+    else:
+        episode = input('Enter a track #: ')
+    return episode
 
 
 def run(src, config_file):
@@ -82,18 +93,18 @@ def run(src, config_file):
     filespec = config.get('MAIN', 'filespec')
 
     if os.path.isfile(src):
-        print("Processing {}...".format(src))
-        #track = get_episode_number(args.source_file)
+        print('Processing file "{}"...'.format(src))
+        track = get_episode_number(src)
         title = get_title(src)
-        update_tags(src, artist, album, genre, artwork, title)
+        update_tags(src, artist, album, genre, artwork, title, track)
     elif os.path.isdir(src):
-        print("directory")
-        # process_folder(src, config_file, filespec)
+        print('Processing folder "{}"...'.format(src))
+        process_folder(src, artist, album, genre, artwork, filespec)
 
 
 def main(argv):
     args = parse_args(argv)
-    print('Processing "{}" using "{}" as reference...'.format(args.src, args.config_file))
+    #print('Processing "{}" using data from "{}"...'.format(args.src, args.config_file))
     run(args.src, args.config_file)
     return 0
 
