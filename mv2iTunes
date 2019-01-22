@@ -2,14 +2,8 @@
 
 # Move mp3 files to iTunes.
 
-if [ "$(uname)" == "Darwin" ]; then
-    echo "configure this"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo "configure this"
-elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
-    dst='/cygdrive/j/music/Automatically Add to iTunes/'
-    dl='/cygdrive/c/dl'
-fi
+dst='/Volumes/media/music/Automatically Add to iTunes'
+dl='~/Downloads'
 
 if [ $# -eq 0 ]
 then
