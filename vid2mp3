@@ -58,12 +58,10 @@ def process_folder(indir):
         files_grabbed.extend(glob.glob(os.path.join(indir, files)))
 
     for media in files_grabbed:
-        #  print(get_command(media, args.output_folder, args.quality))
         os.system(get_command(media, args.output_folder, args.quality))
 
 
 if __name__ == '__main__':
-    #  default_output_folder = '/cygdrive/c/testing/'
     default_output_folder = os.path.join(os.path.expanduser("~"), "Downloads")
 
     parser = argparse.ArgumentParser()
@@ -84,7 +82,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.source_file:
-        #  print(get_command(args.source_file, args.output_folder, args.quality))
         os.system(get_command(args.source_file, args.output_folder, args.quality))
     if args.source_folder:
         process_folder(args.source_folder)
