@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ip=`ipconfig getifaddr en0`
+
+echo $ip 

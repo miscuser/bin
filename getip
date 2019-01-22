@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Return the current IP address of the machine.  This can be called by other scripts.
-
-ip=`route print | egrep "^ +0.0.0.0 +0.0.0.0 +" | gawk 'BEGIN {
-metric=255; ip="0.0.0.0"; } { if ( $5 < metric ) { ip=$4; metric=$5; } }
-END { printf("%s\n",ip); }'`
-
-echo $ip 
