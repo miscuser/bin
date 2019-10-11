@@ -1,3 +1,0 @@
-#!/usr/bin/bash
-
-getlocalip >> '/cygdrive/c/Users/main/Google Drive/logs/ip/ip.txt'
