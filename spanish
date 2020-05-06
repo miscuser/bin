@@ -1,15 +1,13 @@
 #!/bin/bash
 # Opens various Spanish websites with the word/phrase passed in.
 
-q=$1
-
-open -a "Safari" "https://www.google.com.mx/#q="$q; 
-open -a "Safari" "https://www.google.com.mx/search?site=&tbm=isch&q="$q; 
-open -a "Safari" "https://news.google.com/news/section?cf=all&hl=es&ned=es_mx&q="$q"&topicsid=es_mx"; 
-open -a "Safari" "http://forvo.com/search/"$q"/es/"; 
-open -a "Safari" "http://www.123teachme.com/translated_sentences/sp/"$q; 
-open -a "Safari" "http://www.wordreference.com/es/en/translation.asp?spen="$q; 
-open -a "Safari" "http://conjugador.reverso.net/conjugacion-espanol-verbo-"$q".html"; 
-open -a "Safari" "http://www.spanishdict.com/examples/"$q; 
-open -a "Safari" "http://www.spanishdict.com/translate/"$q; 
-open -a "Safari" "http://www.spanishdict.com/conjugate/"$q; 
+open -a "Safari" "https://www.google.com.mx/#q="$1; 
+open -a "Safari" "https://www.google.com.mx/search?site=&tbm=isch&q="$1; 
+open -a "Safari" "https://news.google.com/news/section?cf=all&hl=es&ned=es_mx&q="$1"&topicsid=es_mx"; 
+open -a "Safari" "http://forvo.com/search/"$1"/es/"; 
+open -a "Safari" "http://www.123teachme.com/translated_sentences/sp/"$1; 
+open -a "Safari" "http://www.wordreference.com/es/en/translation.asp?spen="$1; 
+open -a "Safari" "http://conjugador.reverso.net/conjugacion-espanol-verbo-"$1".html"; 
+open -a "Safari" "http://www.spanishdict.com/examples/"$1; 
+open -a "Safari" "http://www.spanishdict.com/translate/"$1; 
+open -a "Safari" "http://www.spanishdict.com/conjugate/"$1; 
